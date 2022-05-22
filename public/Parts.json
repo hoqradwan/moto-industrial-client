@@ -1,6 +1,5 @@
 [
   {
-    "_id": 1,
     "name": "Wheel Bearing Retainer",
     "image": "https://cdn.shopify.com/s/files/1/0259/5877/6892/products/6_952a06d7-31d6-4bb4-b26f-7ef5ea98618f_600x.jpg?v=1646579006",
     "description": "Break conversion kit and short mount insulator",
@@ -9,19 +8,17 @@
     "price" : 55
   },
   {
-    "_id": 2,
-    "name": "Wheel B2420",
+    "name": "Bearing B2420",
     "image": "https://cdn.shopify.com/s/files/1/0259/5877/6892/products/1_600x.jpg?v=1612183182",
-    "description": "Break conversion kit and short mount insulator",
+    "description": "Long lasting and heavy duty bearing",
     "minQ": 50,
     "availableQ": 400,
     "price" : 22
   },
   {
-    "_id": 3,
     "name": "Wheel LX14",
     "image": "https://cdn.shopify.com/s/files/1/0259/5877/6892/products/11_f5cd9e36-d6d5-4eca-bacd-37cf37192e2c_600x.jpg?v=1642962178",
-    "description": "Break conversion kit and short mount insulator",
+    "description": "Durable wheels wiht strong bearing",
     "minQ": 150,
     "availableQ": 670,
     "price" : 19
