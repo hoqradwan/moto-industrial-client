@@ -1,0 +1,11 @@
+[
+  {
+    "_id": 1,
+    "name": "chaka",
+    "image": "...",
+    "description": "....",
+    "minQ": 44,
+    "availableQ": 4,
+    "price" : 45
+  }
+]
