@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import useToken from "../../hooks/useToken";
 import Loading from "../Shared/Loading";
-import SocialLogin from "./SocialLogin";
 
 const Login = () => {
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const location = useLocation();
@@ -18,9 +20,11 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail, sending, error1] =
     useSendPasswordResetEmail(auth);
+    const [token] = useToken(user || gUser);
+
   const navigate = useNavigate();
 
-  if (user) {
+  if (token) {
     navigate(from, { replace: true });
   }
   let errorElement;
@@ -46,8 +50,8 @@ const Login = () => {
   };
   return (
     <>
-      <div class="form-control w-full mx-auto flex h-screen justify-center items-center max-w-xs">
-        <h1 className="text-3xl mb-4">Login</h1>
+      <div class="form-control w-full mx-auto mt-24 p-8  max-w-xs shadow-xl">
+        <h1 className="text-3xl mb-4 text-center">Login</h1>
         <form onSubmit={handleSubmit}>
           <input
             onChange={handleEmailChange}
@@ -76,9 +80,13 @@ const Login = () => {
           />
         </form>
         {errorElement}
-        <a className="btn btn-link" onClick={resetPassword}>Forgetten Password?</a>
+        <a className="btn btn-link" onClick={resetPassword}>
+          Forgetten Password?
+        </a>
         <div className="divider">OR</div>
-        <SocialLogin></SocialLogin>
+        <button onClick={() => signInWithGoogle()} className="btn btn-outline">
+          Continue with Google
+        </button>{" "}
       </div>
     </>
   );

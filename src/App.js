@@ -13,6 +13,10 @@ import PartsDetail from "./Pages/PartsDetail/PartsDetail";
 import MyOrders from "./Pages/Dashboard/MyOrders";
 import AddReview from "./Pages/Dashboard/AddReview";
 import MyProfile from "./Pages/Dashboard/MyProfile";
+import ManageOrders from "./Pages/Dashboard/ManageOrders";
+import ManageProducts from "./Pages/Dashboard/ManageProducts";
+import AddProducts from "./Pages/Dashboard/AddProducts";
+import Users from "./Pages/Dashboard/Users";
 function App() {
   return (
     <div>
@@ -36,9 +40,13 @@ function App() {
             </RequireAuth>
           }
         >
-          <Route index element={<MyOrders></MyOrders>}></Route>
+          <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route path="myorders" element={<MyOrders></MyOrders>}></Route>
           <Route path="review" element={<AddReview></AddReview>}></Route>
-          <Route path="profile" element={<MyProfile></MyProfile>}></Route>
+          <Route path="users" element={<Users></Users>}></Route>
+          <Route path="manageOrders" element={<ManageOrders></ManageOrders>}></Route>
+          <Route path="manageProducts" element={<ManageProducts></ManageProducts>}></Route>
+          <Route path="addProducts" element={<AddProducts></AddProducts>}></Route>
         </Route>
         <Route path="/Portfolio" element={<Portfolio></Portfolio>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
