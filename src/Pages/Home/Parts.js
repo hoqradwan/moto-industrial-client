@@ -9,8 +9,8 @@ const Parts = () => {
         .then(data => setParts(data))
     },[])
     return (
-        <div>
-            <h2>Parts: {parts.length}</h2>
+        <div className='mt-16'>
+            <h2 className='text-4xl mb-5 font-semibold text-center text-accent'>Parts Collection</h2>
             <div className='px-16'>
                 {
                     parts.map(part => <Part key={part._id} part={part}></Part>)
