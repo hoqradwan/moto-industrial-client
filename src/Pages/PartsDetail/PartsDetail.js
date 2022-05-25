@@ -102,7 +102,6 @@ const PartsDetail = () => {
           />
           <br />
           <input
-            // onChange={handleOrderQ}
             type="number"
             name="number"
             class="input input-bordered w-full max-w-xs mb-2"

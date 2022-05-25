@@ -53,7 +53,7 @@ const AddReview = () => {
           placeholder="Your Review"
         ></textarea>
         <br />
-        <input type="Submit" value="Add" class="btn btn-accent max-w-xs" />
+        <input type="Submit" value="Submit" class="btn btn-accent max-w-xs" />
       </form>
     </div>
   );

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 
 const ManageOrders = () => {
    const [orders, setOrders] = useState([]);
@@ -46,9 +45,9 @@ const ManageOrders = () => {
                 <td>
                   <button
                     onClick={() => handleOrderCancel(order._id)}
-                    className="btn btn-red-500 btn-xs"
+                    className="btn btn-error text-white btn-xs"
                   >
-                    Delete Order
+                    Delete
                   </button>
                 </td>
               </tr>

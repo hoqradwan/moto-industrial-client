@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
+  const [user] = useAuthState(auth);
   useEffect(() => {
-    fetch(`http://localhost:5000/orders`)
+    const email = user.email;
+    fetch(`http://localhost:5000/orders?email=${email}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
@@ -44,7 +48,6 @@ const MyOrders = () => {
                 <th>{index + 1}</th>
                 <td>{order.name}</td>
                 <td className="font-semibold">${order.price}</td>
-                {/* <td>{p.treatment}</td> */}
                 <td>
                   {order.price && !order.paid && (
                     <Link to={`/dashboard/payment/${order._id}`}>
