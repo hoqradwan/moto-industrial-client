@@ -1,7 +1,8 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import userEvent from '@testing-library/user-event';
 import React, { useEffect, useState } from 'react';
 
-const CheckoutForm = ({ appointment }) => {
+const CheckoutForm = ({ order }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('');
@@ -10,9 +11,9 @@ const CheckoutForm = ({ appointment }) => {
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
-    const { _id, price, patient, patientName } = appointment;
+    const { _id, customer, price, email} = order;
     useEffect(() => {
-        fetch('https://floating-beyond-48588.herokuapp.com/create-payment-intent', {
+        fetch('http://localhost:5000/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -59,8 +60,8 @@ const CheckoutForm = ({ appointment }) => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        name: patientName,
-                        email: patient
+                        customer: customer,
+                        email: email
                     },
                 },
             });
@@ -75,12 +76,12 @@ const CheckoutForm = ({ appointment }) => {
             setSuccess('your payment is done')
 
             const payment = {
-                appointment: _id,
+                order: _id,
                 transactionId: paymentIntent.id
             }
 
 
-            fetch(`https://floating-beyond-48588.herokuapp.com/booking/${_id}`, {
+            fetch(`http://localhost:5000/orders/${_id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',

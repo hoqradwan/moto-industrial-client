@@ -9,8 +9,7 @@ const PartsDetail = () => {
   const [q, setQ] = useState(0);
   const [isReload, setIsReload] = useState(false);
   const [user] = useAuthState(auth);
-  console.log(user);
-  console.log(user?.displayName);
+
   useEffect(() => {
     fetch(`http://localhost:5000/parts/${partId}`)
       .then((res) => res.json())
@@ -23,7 +22,6 @@ const PartsDetail = () => {
 
     //.................................................
     let orderQ = e.target.number.value;
-    console.log(orderQ);
     if (orderQ > minQ && orderQ < availableQ) {
       const address = e.target.address.value;
       const quantity = e.target.number.value;
@@ -33,7 +31,8 @@ const PartsDetail = () => {
         address: address,
         quantity: quantity,
         email: user.email,
-        price: price
+        price: price,
+        customer: user.displayName
       };
       fetch("http://localhost:5000/orders", {
         method: "POST",

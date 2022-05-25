@@ -4,6 +4,33 @@ import auth from "../../firebase.init";
 
 const MyProfile = () => {
   const [user] = useAuthState(auth);
+  const handleProfileSubmit = (e) =>{
+    e.preventDefault();
+    const education = e.target.education.value;
+    const location = e.target.location.value;
+    const phone = e.target.phone.value;
+    const linkedin = e.target.linkedin.value;
+
+    const profile = {
+      name: user.displayName,
+      email: user.email,
+      education: education,
+      location: location,
+      phone: phone,
+      linkedin: linkedin,
+    };   
+     fetch('http://localhost:5000/profile',{
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(profile)
+    })
+    .then(res => res.json())
+    .then(data=>{
+      console.log(data)
+    })
+  }
   
   return (
     <div>
@@ -16,7 +43,7 @@ const MyProfile = () => {
           <p className="text-xl mb-4">{user.email}</p>
         </div>
 
-        <form className="mr-80">
+        <form onSubmit={handleProfileSubmit} className="mr-80">
           <input
             type="text"
             name="education"
@@ -33,7 +60,7 @@ const MyProfile = () => {
           <br />
           <input
             type="text"
-            name="phoneNumber"
+            name="phone"
             placeholder="Phone Number"
             class="input input-bordered w-full max-w-xs mb-2"
           />
