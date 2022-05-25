@@ -147,7 +147,7 @@ const [token] = useToken(user || gUser);
             </div>
             {signInError}
             <input
-              className="btn w-full max-w-xs"
+              className="btn w-full btn-accent text-white max-w-xs"
               type="submit"
               value="SIGNUP"
             />
@@ -155,7 +155,7 @@ const [token] = useToken(user || gUser);
           <p>
             <small>
               Already have an account?{" "} 
-              <Link className="text-primary" to="/login">
+              <Link className="text-primary font-semibold" to="/login">
                 please login{" "}
               </Link>
             </small>

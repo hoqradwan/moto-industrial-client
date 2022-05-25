@@ -1,0 +1,17 @@
+[
+    {
+        "id" : 1,
+        "img": "https://media.istockphoto.com/photos/supervisor-at-a-car-workshop-checking-tablet-while-mechanic-works-at-picture-id1349412663?b=1&k=20&m=1349412663&s=170667a&w=0&h=TD-7CdmxsBrmWf5dFI2cBxJkUUBkegFOyOrNhubTisg=",
+        "serviceName": "Exclusive after sell service"
+    },
+    {
+        "id" : 2,
+        "img": "https://images.unsplash.com/photo-1617817546276-80b86dd60151?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHBhY2thZ2UlMjBkZWxpdmVyeXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600",
+        "serviceName": "Delivary service to your store"
+    },
+    {
+        "id" : 3,
+        "img": "https://media.istockphoto.com/photos/car-components-picture-id188052258?b=1&k=20&m=188052258&s=170667a&w=0&h=1lZzVIYFHnUN-RU0WCeWxx8OXHJb6z3-Bc_u4Cej2K4=",
+        "serviceName": "Defective products replacement"
+    }
+]

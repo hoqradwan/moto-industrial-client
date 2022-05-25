@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import Review from "./Review";
 
 const Reviews = () => {
-  /*  const { data } = useQuery('reviews', () => fetch('http://localhost:5000/reviews').then(res => res.json())); */
+
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/reviews")
@@ -11,11 +11,11 @@ const Reviews = () => {
       .then((data) => setReviews(data));
   }, []);
   return (
-    <div>
-      <h1 className="text-4xl text-center text-accent font-semibold mt-28">
+    <div className="px-10">
+      <h1 className="text-4xl text-center text-primary font-semibold mt-24">
         Customer Reviews
       </h1>
-      <div className="grid grid-cols-3">
+      <div className="grid lg:grid-cols-3">
           {
               reviews.map(rev => <Review rev={rev}></Review>)
           }

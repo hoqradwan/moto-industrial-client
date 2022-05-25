@@ -14,7 +14,7 @@ const Part = ({ part }) => {
           <img className="w-64" src={image} alt="Album"></img>
         </figure>
         <div class="card-body">
-          <h2 class="text-2xl font-bold">{name}</h2>
+          <h2 class="text-2xl font-bold text-secondary">{name}</h2>
           <span>{description}</span>
           <span>{minQ}</span>
           <span>{availableQ}</span>
@@ -24,7 +24,7 @@ const Part = ({ part }) => {
               onClick={() => {
                 navigateToPartsDetail(_id);
               }}
-              class="btn btn-sm btn-primary"
+              class="btn btn-sm btn-accent text-white"
             >
               Purchase
             </button>

@@ -10,7 +10,7 @@ const Parts = () => {
     },[])
     return (
         <div className='mt-16'>
-            <h2 className='text-4xl mb-5 font-semibold text-center text-accent'>Parts Collection</h2>
+            <h2 className='text-4xl mb-5 font-semibold text-center text-primary'>Parts Collection</h2>
             <div className='px-16'>
                 {
                     parts.map(part => <Part key={part._id} part={part}></Part>)

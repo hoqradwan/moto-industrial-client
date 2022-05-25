@@ -10,7 +10,7 @@ const Contact = () => {
             <br />
             <textarea class="textarea w-80 textarea-bordered mb-3" placeholder="Your Review"></textarea>
             <br />
-            <button class="btn btn-success mb-3">Submit</button>
+            <button class="btn btn-nutral mb-3">Submit</button>
 
         </div>
     );

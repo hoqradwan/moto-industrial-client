@@ -34,8 +34,8 @@ const MyProfile = () => {
   
   return (
     <div>
-      <h1>My profile</h1>
-      <div className="flex justify-between mt-8">
+      
+      <div className="lg:flex justify-between mt-8 px-6">
         <div>
           <h1 className="font-bold mt-8">Full Name</h1>
           <p className="text-xl">{user.displayName}</p>
@@ -55,21 +55,21 @@ const MyProfile = () => {
             type="text"
             name="location"
             placeholder="Your Location"
-            class="input input-bordered w-full max-w-xs mb-2"
+            class="input input-bordered w-96 max-w-xs mb-2"
           />
           <br />
           <input
             type="text"
             name="phone"
             placeholder="Phone Number"
-            class="input input-bordered w-full max-w-xs mb-2"
+            class="input input-bordered w-96 max-w-xs mb-2"
           />
           <br />
           <input
             type="text"
             name="linkedin"
             placeholder="Linkedin Profile Link"
-            class="input input-bordered w-full max-w-xs mb-2"
+            class="input input-bordered w-96 max-w-xs mb-2"
           />
           <br />
           <input

@@ -88,7 +88,7 @@ price */
         <input
           type="submit"
           value="Add Product"
-          class="input input-bordered w-full max-w-xs btn btn-primary"
+          class="input input-bordered w-full max-w-xs btn btn-accent text-white"
         />
       </form>
         </div>

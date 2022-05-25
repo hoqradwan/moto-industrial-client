@@ -67,8 +67,8 @@ const Login = () => {
           />
           <p>
             <small>
-              New to Moto Industrial{" "}
-              <Link className="text-primary mt-4" to="/signup">
+              New to Moto?{" "}
+              <Link className="text-primary font-semibold mt-4" to="/signup">
                 Create New Account
               </Link>
             </small>
@@ -76,7 +76,7 @@ const Login = () => {
           <input
             type="submit"
             value="Login"
-            class="btn w-full max-w-xs text-white mt-1"
+            class="btn w-full max-w-xs btn-accent text-white mt-1"
           />
         </form>
         {errorElement}

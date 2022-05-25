@@ -74,7 +74,7 @@ const PartsDetail = () => {
         <div class="hero-content flex-col lg:flex-row">
           <img src={image} class="max-w-sm rounded-lg mr-16" />
           <div>
-            <h1 class="text-3xl font-bold mb-3">{name}</h1>
+            <h1 class="text-3xl text-primary font-bold mb-3">{name}</h1>
             <h1 className="mb-4 text-xl">Order For <span className="font-bold">{user.displayName}</span></h1>
             <p className="mb-2">{description}</p>
             <p className="mb-2">
@@ -132,7 +132,7 @@ const PartsDetail = () => {
           <input
             type="submit"
             value="Place Order"
-            class="input input-bordered w-full max-w-xs btn btn-primary"
+            class="btn btn-accent w-full max-w-xs text-white"
           />
         </form>
       </div>
