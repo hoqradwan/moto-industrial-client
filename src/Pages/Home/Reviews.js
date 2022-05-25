@@ -12,7 +12,7 @@ const Reviews = () => {
   }, []);
   return (
     <div className="px-10">
-      <h1 className="text-4xl text-center text-primary font-semibold mt-24">
+      <h1 className="text-4xl text-center text-primary font-semibold mt-32">
         Customer Reviews
       </h1>
       <div className="grid lg:grid-cols-3">
