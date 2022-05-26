@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
 const PartsDetail = () => {
@@ -8,41 +9,51 @@ const PartsDetail = () => {
   const [part, setPart] = useState({});
   const [isReload, setIsReload] = useState(false);
   const [user] = useAuthState(auth);
-const [error, setError] = useState('')
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   useEffect(() => {
-    fetch(`http://localhost:5000/parts/${partId}`)
+    fetch(`https://still-lowlands-64974.herokuapp.com/parts/${partId}`)
       .then((res) => res.json())
       .then((data) => setPart(data));
   }, [isReload, partId]);
   let { _id, name, image, minQ, availableQ, price } = part;
 
-  const handleOrder = (e) => {
+  const handleSubmitOrder = (e) => {
     e.preventDefault();
-
     const address = e.target.address.value;
-    const order = {
-      name: name,
-      address: address,
-      email: user.email,
-      price: price,
-      customer: user.displayName,
-    };
-    fetch("http://localhost:5000/orders", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(order),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        e.target.reset();
-      });
+    let quantity = e.target.quantity.value;
+    if (quantity > minQ && quantity < availableQ) {
+     
+      const order = {
+        name: name,
+        address: address,
+        email: user.email,
+        price: price,
+        customer: user.displayName,
+      };
+    
+        fetch("https://still-lowlands-64974.herokuapp.com/orders", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(order),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            e.target.reset();
+            console.log(data);
+            toast.success("Order Placed Successfully");
+          });
+      }else{
+        toast.error('Please order a valid quantity')
+      }
+   
 
     // ......................................
 
     /*  const updatedParts = { availableQ };
-      fetch(`http://localhost:5000/parts/${partId}`, {
+      fetch(`https://still-lowlands-64974.herokuapp.com/parts/${partId}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -53,24 +64,18 @@ const [error, setError] = useState('')
         .then((data) => {
           console.log(data);
         }); */
-   
   };
-  let newQ;
   const handleQchange = (e) => {
-   
- newQ = e.target.value;
+    let newQ = e.target.value;
 
-    if(newQ < minQ ){
+  if (newQ < minQ) {
+      setError(`Please order more than ${minQ} products`);
+    } else if (newQ > availableQ) {
+      setError(`Please order less than ${availableQ} products`);
+    } else {
+      setError("");
+    } 
 
-      setError(`Please order more than ${minQ} products`) 
-    
-    }
-    else if(newQ > availableQ){
-      setError(`Please order less than ${availableQ} products`)
-
-    }else{
-      setError('')
-    }
   };
   return (
     <div className="px-12 flex justify-around items-center mt-16">
@@ -93,23 +98,20 @@ const [error, setError] = useState('')
             {availableQ}
           </p>
           <p className="text-3xl font-bold text-accent mb-3">${price}</p>
-    
         </div>
       </div>
       <div>
-        <div className="text-center">
- 
-          <input
-            type="number"
-            onChange={handleQchange}
-            placeholder='Quantity'
-            class="input input-bordered w-28 max-w-xs mb-2"
-          />
- <p className="text-red-500 text-justify mb-2">{error}</p>
-
-        </div>
-
-        <form onSubmit={handleOrder}>
+        <form onSubmit={handleSubmitOrder}>
+          <div className="text-center">
+            <input
+              type="number"
+              onChange={handleQchange}
+              name="quantity"
+              placeholder="Quantity"
+              class="input input-bordered w-28 max-w-xs mb-2"
+            />
+            <p className="text-red-500 text-justify mb-2">{error}</p>
+          </div>
           <input
             type="text"
             name="partsName"
@@ -139,17 +141,11 @@ const [error, setError] = useState('')
             class="input input-bordered w-96 max-w-xs mb-2"
           />
           <br />
-
-        {newQ < minQ || newQ> availableQ ?  <input
+          <input
             type="submit"
-            disabled
             value="Place Order"
             class="btn btn-accent w-full max-w-xs text-white"
-          /> :   <input
-          type="submit"
-          value="Place Order"
-          class="btn btn-accent w-full max-w-xs text-white"
-        />  }
+          />
         </form>
       </div>
     </div>
@@ -157,8 +153,3 @@ const [error, setError] = useState('')
 };
 
 export default PartsDetail;
-
-
-
-
-

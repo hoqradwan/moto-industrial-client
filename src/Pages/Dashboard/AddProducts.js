@@ -1,13 +1,7 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const AddProducts = () => {
-/* name
-image
-description
-minQ
-availableQ
-price */
-
     const handleProduct = (e) => {
         e.preventDefault();
           const name = e.target.name.value;
@@ -25,7 +19,7 @@ price */
             price: price,
             image: image
           };
-          fetch("http://localhost:5000/parts", {
+          fetch("https://still-lowlands-64974.herokuapp.com/parts", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -34,7 +28,7 @@ price */
           })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
+                toast.success('Product Added')
               e.target.reset();
             });
 

@@ -8,9 +8,10 @@ const Contact = () => {
             <br />
             <input type="text" placeholder="Email Address" class="input input-bordered w-full max-w-xs mb-2" />
             <br />
-            <textarea class="textarea w-80 textarea-bordered mb-3" placeholder="Your Review"></textarea>
+            <textarea class="textarea textarea-bordered" placeholder="Your Message"></textarea>
+          
             <br />
-            <button class="btn btn-nutral mb-3">Submit</button>
+            <button class="btn btn-nutral mb-5">Submit</button>
 
         </div>
     );

@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
 
@@ -15,7 +16,7 @@ const AddReview = () => {
          userName: user?.displayName
         }
         console.log(review)
-        fetch("http://localhost:5000/reviews", {
+        fetch("https://still-lowlands-64974.herokuapp.com/reviews", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -25,6 +26,7 @@ const AddReview = () => {
         .then(res => res.json())
         .then(data => {
             event.target.reset();
+            toast.success('Review added')
             console.log(data)
         })
 

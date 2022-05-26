@@ -18,6 +18,8 @@ import ManageProducts from "./Pages/Dashboard/ManageProducts";
 import AddProducts from "./Pages/Dashboard/AddProducts";
 import Users from "./Pages/Dashboard/Users";
 import Payment from "./Pages/Dashboard/Payment";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <div>
@@ -55,6 +57,7 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

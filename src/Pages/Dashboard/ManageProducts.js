@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react';
 const ManageProducts = () => { 
     const [parts, setParts] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/parts')
+        fetch('https://still-lowlands-64974.herokuapp.com/parts')
         .then(res => res.json())
         .then(data => setParts(data))
     },[])
      const handleOrderCancel = (id) => {
      const proceed = window.confirm("Delete product from parts collection?");
      if (proceed) {
-     fetch(`http://localhost:5000/parts/${id}`, {
+     fetch(`https://still-lowlands-64974.herokuapp.com/parts/${id}`, {
        method: "DELETE",
      })
        .then((res) => res.json())

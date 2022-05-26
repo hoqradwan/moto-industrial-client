@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
 const MyProfile = () => {
@@ -19,7 +20,7 @@ const MyProfile = () => {
       phone: phone,
       linkedin: linkedin,
     };   
-     fetch('http://localhost:5000/profile',{
+     fetch('https://still-lowlands-64974.herokuapp.com/profile',{
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -28,7 +29,8 @@ const MyProfile = () => {
     })
     .then(res => res.json())
     .then(data=>{
-      console.log(data)
+      toast.success('Profile info updated')
+      e.target.reset();
     })
   }
   

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const ManageOrders = () => {
    const [orders, setOrders] = useState([]);
    useEffect(()=>{
-       fetch('http://localhost:5000/orders')
+       fetch('https://still-lowlands-64974.herokuapp.com/orders')
        .then(res => res.json())
        .then(data => setOrders(data))
    },[])
@@ -11,13 +11,12 @@ const ManageOrders = () => {
    const handleOrderCancel = (id) => {
     const proceed = window.confirm("Delete product from your orders?");
     if (proceed) {
-    fetch(`http://localhost:5000/orders/${id}`, {
+    fetch(`https://still-lowlands-64974.herokuapp.com/orders/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-       
           const remaining = orders.filter((order) => order._id !== id);
           setOrders(remaining);
        
