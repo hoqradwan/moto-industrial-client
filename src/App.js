@@ -19,7 +19,8 @@ import AddProducts from "./Pages/Dashboard/AddProducts";
 import Users from "./Pages/Dashboard/Users";
 import Payment from "./Pages/Dashboard/Payment";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import RequireAdmin from "./Pages/Auth/RequireAdmin";
 function App() {
   return (
     <div>
@@ -46,11 +47,39 @@ function App() {
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path="myorders" element={<MyOrders></MyOrders>}></Route>
           <Route path="review" element={<AddReview></AddReview>}></Route>
-          <Route path="users" element={<Users></Users>}></Route>
+          <Route
+            path="users"
+            element={
+              <RequireAdmin>
+                <Users></Users>
+              </RequireAdmin>
+            }
+          ></Route>
           <Route path="payment/:id" element={<Payment></Payment>}></Route>
-          <Route path="manageOrders" element={<ManageOrders></ManageOrders>}></Route>
-          <Route path="manageProducts" element={<ManageProducts></ManageProducts>}></Route>
-          <Route path="addProducts" element={<AddProducts></AddProducts>}></Route>
+          <Route
+            path="manageOrders"
+            element={
+              <RequireAdmin>
+                <ManageOrders></ManageOrders>
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="manageProducts"
+            element={
+              <RequireAdmin>
+                <ManageProducts></ManageProducts>
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="addProducts"
+            element={
+              <RequireAdmin>
+                <AddProducts></AddProducts>
+              </RequireAdmin>
+            }
+          ></Route>
         </Route>
         <Route path="/Portfolio" element={<Portfolio></Portfolio>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
