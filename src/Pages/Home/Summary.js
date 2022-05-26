@@ -1,5 +1,4 @@
 import React from "react";
-// import business from '../../images/business.png'
 import { FcBusiness } from "react-icons/fc";
 import { GiShadowFollower } from "react-icons/gi";
 import { MdFeedback } from "react-icons/md";
@@ -19,7 +18,7 @@ const Summary = () => {
               </span>
            
               <span className="text-secondary text-3xl font-bold">
-              Business Projects <span className="text-accent">210k</span>
+              Consumers <span className="text-accent">200+</span>
               </span>
             </p>
           </div>
@@ -30,7 +29,7 @@ const Summary = () => {
               </span>
 
               <span className="text-secondary text-3xl font-bold">
-                Our followers: <span className="text-accent">6800k</span>
+                Annual Revenue: <span className="text-accent">120M</span>
               </span>
             </p>
           </div>
@@ -40,7 +39,7 @@ const Summary = () => {
                 <MdFeedback></MdFeedback>
               </span>
               <span className="text-secondary text-3xl font-bold">
-                Feedbacks: <span className="text-accent">945k</span>
+                Feedbacks: <span className="text-accent">60+</span>
               </span>
             </p>
           </div>
