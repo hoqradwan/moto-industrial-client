@@ -28,10 +28,10 @@ const Login = () => {
     navigate(from, { replace: true });
   }
   let errorElement;
-  if (error) {
+  if (error || gError) {
     errorElement = <p className="text-danger">{error.message}</p>;
   }
-  if (loading) {
+  if (loading || gLoading) {
     return <Loading></Loading>;
   }
 
