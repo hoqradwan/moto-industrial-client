@@ -10,7 +10,6 @@ const PartsDetail = () => {
   const [isReload, setIsReload] = useState(false);
   const [user] = useAuthState(auth);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
   useEffect(() => {
     fetch(`https://still-lowlands-64974.herokuapp.com/parts/${partId}`)
       .then((res) => res.json())
@@ -31,7 +30,7 @@ const PartsDetail = () => {
         price: price,
         customer: user.displayName,
       };
-    
+  
         fetch("https://still-lowlands-64974.herokuapp.com/orders", {
           method: "POST",
           headers: {
@@ -45,6 +44,24 @@ const PartsDetail = () => {
             console.log(data);
             toast.success("Order Placed Successfully");
           });
+        
+            availableQ = availableQ - quantity
+            const updatedParts = { availableQ };
+            fetch(`https://still-lowlands-64974.herokuapp.com/parts/${partId}`, {
+              method: "PUT",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(updatedParts),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                setIsReload(!isReload)
+              }); 
+     
+  
+    
       }else{
         toast.error('Please order a valid quantity')
       }

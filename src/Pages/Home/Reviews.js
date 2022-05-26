@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import Review from "./Review";
 
 const Reviews = () => {
@@ -15,7 +14,7 @@ const Reviews = () => {
       <h1 className="text-4xl text-center text-primary font-semibold mt-32">
         Customer Reviews
       </h1>
-      <div className="grid lg:grid-cols-3">
+      <div className="grid lg:grid-cols-3 grid-cols-1">
           {
               reviews.map(rev => <Review rev={rev}></Review>)
           }

@@ -57,7 +57,7 @@ const Blogs = () => {
             Why you do not set the state directly in React?
           </h4>
           <p>
-            To change a value in the state object, we use the this. setState()
+            To change a value in the state object, we use the this.setState()
             method. When a value in the state object changes, the component will
             re-render, meaning that the output will change according to the new
             value(s).

@@ -1,6 +1,6 @@
 # Moto Industrial
 
-Live website [Moto Industrial](https://redion-electronics.firebaseapp.com/).
+Live website [Moto Industrial](https://moto-industrial.firebaseapp.com/).
 
 * This is a car parts manufacturer website.
 * I have used React JS to build the client side of this project.
