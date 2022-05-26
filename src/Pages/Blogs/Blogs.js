@@ -41,26 +41,15 @@ const Blogs = () => {
         <div className="blog">
           <h4 className="text-primary text-xl font-semibold mb-2">How does prototypical inheritance work?</h4>
           <p>
-          Prototypal Inheritance is a feature in javascript used to add
-            methods and properties in objects. The ‘this’ keyword refers to
-            itself, to its own object or global object. Using ‘this’ are
-            partitioned in 3 locations of code. These are in functions, outside
-            of functions (global scope, ex: window object), and in Javascript’s
-            eval() function.Common pitfalls when using ‘this’ are usually
-            relevant to scope issues in real functions, methods, and
-            constructors. Though there are ways to fix these common issues by
-            using ES5, bind() or ES6 arrow functions
+          Every object with its methods and properties contains an internal and hidden property known as [[Prototype]]. The Prototypal Inheritance is a feature in javascript that is used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object. Traditionally, in order to get and set the [[Prototype]] of an object, we use Object.getPrototypeOf and Object.setPrototypeOf. Nowadays, in modern language, it is being set using __proto__.
           </p>
         </div>
         <div className="blog">
           <h4 className="text-primary text-xl font-semibold mb-2">
-            Why you do not set the state directly in React?
+            Why we do not set the state directly in React?
           </h4>
           <p>
-            To change a value in the state object, we use the this.setState()
-            method. When a value in the state object changes, the component will
-            re-render, meaning that the output will change according to the new
-            value(s).
+          If we update a state directly, calling the setState() afterward may just replace the update you made. When we directly update the state, it does not change this.state immediately. Instead, it creates a pending state transition, and accessing it after calling this method will only return the present value. Then we will loss control of the state accross all components. That is why, we do not set the state directly in react. 
           </p>
         </div>
         <div className="blog">
