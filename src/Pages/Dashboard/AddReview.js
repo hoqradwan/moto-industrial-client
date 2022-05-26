@@ -30,7 +30,7 @@ const AddReview = () => {
 
     }
   return (
-    <div className="px-48 mt-28">
+    <div className='px-8 mt-8'>
       <form onSubmit={handleSubmitReview}>
         <input
           type="text"
@@ -53,7 +53,7 @@ const AddReview = () => {
           placeholder="Your Review"
         ></textarea>
         <br />
-        <input type="Submit" value="Submit" class="btn btn-accent max-w-xs" />
+        <input type="Submit" value="Submit" class="btn btn-accent text-white max-w-xs" />
       </form>
     </div>
   );

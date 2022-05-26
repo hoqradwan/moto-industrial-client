@@ -1,22 +1,20 @@
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { data } from 'autoprefixer';
-import React, { useState } from 'react';
-import { useQuery } from 'react-query';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Loading from '../Shared/Loading';
 import CheckoutForm from './CheckoutForm';
 
-const stripePromise = loadStripe('pk_test_51L11evCvuGHeMm9SkGgB12DjDkbkZM0vdFqbeTtmMYFe68zHlpy84kGnL58siTTTVDmPNZEhu4WQVAZgcdVTECMV00HDeadvRe');
+const stripePromise = loadStripe('pk_test_51L3N1qJawf87TXhh7LMGSMKoDkNByog9LWcP3IgKTc2eUSruQo9JpGdKGBSxHSJTBOJm04WHeuIJYWw7DksVQowE00WLgYkkxc');
 
 const Payment = () => {
     const { id } = useParams();
     const [order, setOrder] = useState({})
-    const url = `http://localhost:5000/orders/${id}`;
-
-   fetch(url).then(res => res.json())
-    .then(data => setOrder(data));
-
+    useEffect(()=>{
+        const url = `http://localhost:5000/orders/${id}`;
+        fetch(url).then(res => res.json())
+         .then(data => setOrder(data));
+    },[id])
+  
     return (
         <div>
             <div class="card w-96 bg-neutral text-white my-4">
@@ -38,3 +36,6 @@ const Payment = () => {
 };
 
 export default Payment;
+
+
+

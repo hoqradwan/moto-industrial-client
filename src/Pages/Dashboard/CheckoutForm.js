@@ -1,5 +1,4 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import userEvent from '@testing-library/user-event';
 import React, { useEffect, useState } from 'react';
 
 const CheckoutForm = ({ order }) => {
@@ -12,7 +11,7 @@ const CheckoutForm = ({ order }) => {
     const [clientSecret, setClientSecret] = useState('');
 
     const { _id, customer, price, email} = order;
-    useEffect(() => {
+/*   useEffect(() => {
         fetch('http://localhost:5000/create-payment-intent', {
             method: 'POST',
             headers: {
@@ -29,8 +28,8 @@ const CheckoutForm = ({ order }) => {
 
             })
 
-    }, [price])
-
+    }, [price]) 
+ */
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -118,3 +117,6 @@ const CheckoutForm = ({ order }) => {
 };
 
 export default CheckoutForm;
+
+
+ 

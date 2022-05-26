@@ -6,52 +6,42 @@ import auth from "../../firebase.init";
 const PartsDetail = () => {
   const { partId } = useParams();
   const [part, setPart] = useState({});
-  const [q, setQ] = useState(0);
   const [isReload, setIsReload] = useState(false);
   const [user] = useAuthState(auth);
-
+const [error, setError] = useState('')
   useEffect(() => {
     fetch(`http://localhost:5000/parts/${partId}`)
       .then((res) => res.json())
       .then((data) => setPart(data));
   }, [isReload, partId]);
-  let { _id, name, image, description, minQ, availableQ, price } = part;
+  let { _id, name, image, minQ, availableQ, price } = part;
 
   const handleOrder = (e) => {
     e.preventDefault();
 
-    //.................................................
-    let orderQ = e.target.number.value;
-    if (orderQ > minQ && orderQ < availableQ) {
-      const address = e.target.address.value;
-      const quantity = e.target.number.value;
+    const address = e.target.address.value;
+    const order = {
+      name: name,
+      address: address,
+      email: user.email,
+      price: price,
+      customer: user.displayName,
+    };
+    fetch("http://localhost:5000/orders", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        e.target.reset();
+      });
 
-      const order = {
-        name: name,
-        address: address,
-        quantity: quantity,
-        email: user.email,
-        price: price,
-        customer: user.displayName,
-      };
-      fetch("http://localhost:5000/orders", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(order),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          // console.log(data);
-          e.target.reset();
-          setIsReload(!isReload);
-        });
+    // ......................................
 
-      // ......................................
-      setQ(orderQ);
-      availableQ = availableQ - orderQ;
-      const updatedParts = { availableQ };
+    /*  const updatedParts = { availableQ };
       fetch(`http://localhost:5000/parts/${partId}`, {
         method: "PUT",
         headers: {
@@ -62,9 +52,24 @@ const PartsDetail = () => {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-        });
-    } else {
-      alert("You cannot order parts less than minimum quantity");
+        }); */
+   
+  };
+  let newQ;
+  const handleQchange = (e) => {
+   
+ newQ = e.target.value;
+
+    if(newQ < minQ ){
+
+      setError(`Please order more than ${minQ} products`) 
+    
+    }
+    else if(newQ > availableQ){
+      setError(`Please order less than ${availableQ} products`)
+
+    }else{
+      setError('')
     }
   };
   return (
@@ -74,7 +79,7 @@ const PartsDetail = () => {
           <img src={image} alt="Shoes" />
         </figure>
         <div class="card-body">
-          <h2 class="text-3xl text-accent font-bold mb-3">{name}</h2>
+          <h2 class="text-3xl text-white font-bold mb-3">{name}</h2>
           <h1 className="mb-4 text-xl">
             Order For <span className="font-bold">{user.displayName}</span>
           </h1>
@@ -87,14 +92,23 @@ const PartsDetail = () => {
             <span className="font-semibold">Available Parts: </span>
             {availableQ}
           </p>
-          <p className="text-3xl font-bold text-emerald-600 mb-3">${price}</p>
-          <br />
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
-          </div>
+          <p className="text-3xl font-bold text-accent mb-3">${price}</p>
+    
         </div>
       </div>
       <div>
+        <div className="text-center">
+ 
+          <input
+            type="number"
+            onChange={handleQchange}
+            placeholder='Quantity'
+            class="input input-bordered w-28 max-w-xs mb-2"
+          />
+ <p className="text-red-500 text-justify mb-2">{error}</p>
+
+        </div>
+
         <form onSubmit={handleOrder}>
           <input
             type="text"
@@ -105,17 +119,10 @@ const PartsDetail = () => {
           />
           <br />
           <input
-            type="number"
-            name="number"
-            class="input input-bordered w-96 max-w-xs mb-2"
-          />
-          <br />
-          <input
             type="email"
             name="email"
             disabled
             value={user?.email}
-            placeholder="Type here"
             class="input input-bordered w-96 max-w-xs mb-2 font-semibold"
           />
           <br />
@@ -133,11 +140,16 @@ const PartsDetail = () => {
           />
           <br />
 
-          <input
+        {newQ < minQ || newQ> availableQ ?  <input
             type="submit"
+            disabled
             value="Place Order"
             class="btn btn-accent w-full max-w-xs text-white"
-          />
+          /> :   <input
+          type="submit"
+          value="Place Order"
+          class="btn btn-accent w-full max-w-xs text-white"
+        />  }
         </form>
       </div>
     </div>
@@ -146,26 +158,7 @@ const PartsDetail = () => {
 
 export default PartsDetail;
 
-/* 
- <div class="hero min-h-screen">
-        <div class="hero-content flex-col lg:flex-row">
-          <img src={image} class="max-w-sm rounded-lg mr-16" />
-          <div>
-            <h1 class="text-3xl text-primary font-bold mb-3">{name}</h1>
-            <h1 className="mb-4 text-xl">Order For <span className="font-bold">{user.displayName}</span></h1>
-            <p className="mb-2">{description}</p>
-            <p className="mb-2">
-              <span className="font-semibold">Minimum quantity to order: </span>
-              {minQ}
-            </p>
-            <p className="mb-2">
-              <span className="font-semibold">Available Parts: </span>
-              {availableQ}
-            </p>
-            <p className="text-3xl font-bold text-emerald-600 mb-3">${price}</p>
-            <br />
-          </div>
-        </div>
-      </div>
 
-*/
+
+
+
